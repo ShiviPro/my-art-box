@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyArtBox - Catalog</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+      import "@material/web/all.js";
+      import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
+
+      document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <link rel="stylesheet" href="/styles/catalog.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <h3 class="brand-name">MyArtBox</h3>
+      </div>
+      <!-- Navigation Menu -->
+      <nav>
+        <ul class="nav-links">
+          <li>
+            <a href="index.html">
+              <md-outlined-button>Home</md-outlined-button>
+            </a>
+          </li>
+          <li>
+            <a href="catalog.html">
+              <md-outlined-button disabled>Catalog</md-outlined-button>
+            </a>
+          </li>
+          <li>
+            <a href="about.html">
+              <md-outlined-button>About</md-outlined-button>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html">
+              <md-outlined-button>Contact</md-outlined-button>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="right-aligned-content">
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." />
+        </div>
+        <div class="header-icons">
+          <md-filled-button onclick="window.location.href='cart.html'"
+            >Cart</md-filled-button
+          >
+          <md-filled-tonal-button onclick="window.location.href='profile.html'"
+            >Profile</md-filled-tonal-button
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <section class="breadcrumbs">
+      <p>Home > Catalog > Category</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="catalog">
+      <!-- Filter Sidebar -->
+      <aside class="filter-sidebar">
+        <h2>Filters</h2>
+        <md-filled-button class="apply-filters-button">Apply Filters</md-filled-button>
+        <div class="filter-group">
+            <h3>Price Range</h3>
+            <input type="range" id="price-range" min="0" max="10000" step="100" value="7000"/>
+            <div id="price-range-values">
+              <span id="min-price">₹0</span> - <span id="max-price">₹10000</span>
+          </div>
+        </div>
+        <div class="filter-group">
+            <h3>Color</h3>
+            <label><input class="color" type="checkbox" value="Black" /> Black</label>
+            <label><input class="color" type="checkbox" value="White" /> White</label>
+            <label><input class="color" type="checkbox" value="Brown" /> Brown</label>
+        </div>
+        <div class="filter-group">
+            <h3>Material</h3>
+            <label><input class="material" type="checkbox" value="Cotton" /> Cotton</label>
+            <label><input class="material" type="checkbox" value="Acrylic" /> Acrylic</label>
+            <label><input class="material" type="checkbox" value="Graphite" /> Graphite</label>
+            <label><input class="material" type="checkbox" value="Water-based" /> Water-based</label>
+            <label><input class="material" type="checkbox" value="Oil" /> Oil</label>
+            <label><input class="material" type="checkbox" value="Charcoal" /> Charcoal</label>
+            <label><input class="material" type="checkbox" value="Wood" /> Wood</label>
+            <label><input class="material" type="checkbox" value="Steel" /> Steel</label>
+            <label><input class="material" type="checkbox" value="Rubber" /> Rubber</label>
+            <label><input class="material" type="checkbox" value="Ceramic" /> Ceramic</label>
+            <label><input class="material" type="checkbox" value="Ink" /> Ink</label>
+        </div>
+        <div class="filter-group">
+            <h3>Brand</h3>
+            <label><input class="brand" type="checkbox" value="ArtMaster" /> ArtMaster</label>
+            <label><input class="brand" type="checkbox" value="ColorSplash" /> ColorSplash</label>
+            <label><input class="brand" type="checkbox" value="SketchPro" /> SketchPro</label>
+            <label><input class="brand" type="checkbox" value="PaperMagic" /> PaperMagic</label>
+            <label><input class="brand" type="checkbox" value="EaselKing" /> EaselKing</label>
+            <label><input class="brand" type="checkbox" value="ToolBox" /> ToolBox</label>
+            <h3>Artist</h3>
+            <label><input class="brand" type="checkbox" value="John Doe" /> John Doe</label>
+            <label><input class="brand" type="checkbox" value="Sarah Lee" /> Sarah Lee</label>
+            <label><input class="brand" type="checkbox" value="Jane Smith" /> Jane Smith</label>
+        </div>
+        <div class="filter-group">
+            <h3>Rating</h3>
+            <div class="star-rating">
+                <div class="stars">
+                    <span data-value="5">&#9733;</span>
+                    <span data-value="4">&#9733;</span>
+                    <span data-value="3">&#9733;</span>
+                    <span data-value="2">&#9733;</span>
+                    <span data-value="1">&#9733;</span>
+                </div>
+            </div>
+            <div id="rating-value"></div>
+        </div>
+    </aside>
+      <!-- Product Grid -->
+      <section class="product-grid">
+        <div class="product-item">
+          <img src="product1.jpg" alt="Product 1" />
+          <h3>
+            <md-text-button>
+              <a href="/product-details.html">Product 1</a>
+            </md-text-button>
+          </h3>
+          <p>₹500</p>
+          <md-filled-button class="buy-now-btn">Buy Now</md-filled-button>
+          <md-outlined-button class="add-to-cart-btn"
+            >Add to Cart</md-outlined-button
+          >
+        </div>
+        <div class="product-item">
+          <img src="product2.jpg" alt="Product 2" />
+          <h3>
+            <md-text-button>
+              <a href="/product-details.html">Product 2</a>
+            </md-text-button>
+          </h3>
+          <p>₹750</p>
+          <md-filled-button class="buy-now-btn">Buy Now</md-filled-button>
+          <md-outlined-button class="add-to-cart-btn"
+            >Add to Cart</md-outlined-button
+          >
+        </div>
+        <div class="product-item">
+          <img src="product3.jpg" alt="Product 3" />
+          <h3>
+            <md-text-button>
+              <a href="/product-details.html">Product 3</a>
+            </md-text-button>
+          </h3>
+          <p>₹1000</p>
+          <md-filled-button class="buy-now-btn">Buy Now</md-filled-button>
+          <md-outlined-button class="add-to-cart-btn"
+            >Add to Cart</md-outlined-button
+          >
+        </div>
+        <div class="product-item">
+          <img src="product4.jpg" alt="Product 4" />
+          <h3>
+            <md-text-button>
+              <a href="/product-details.html">Product 4</a>
+            </md-text-button>
+          </h3>
+          <p>₹1250</p>
+          <md-filled-button class="buy-now-btn">Buy Now</md-filled-button>
+          <md-outlined-button class="add-to-cart-btn"
+            >Add to Cart</md-outlined-button
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/info.myartbox/" target="_blank"
+            ><img src="/assets/icons/instagram.svg" alt="Instagram"
+          /></a>
+          <a href="https://in.pinterest.com/infomyartbox/" target="_blank"
+            ><img src="/assets/icons/pinterest.svg" alt="Pinterest"
+          /></a>
+          <a href="mailto:info.myartbox@gmail.com"
+            ><img src="/assets/icons/mail.svg" alt=""
+          /></a>
+        </div>
+      <span class="copyright">MyArtBox&copy;2024</span>
+    </footer>
+
+    <script src="./scripts/filter-products.js"></script>
+  </body>
+</html>

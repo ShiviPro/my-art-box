@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyArtBox - Contact Us</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+      import "@material/web/all.js";
+      import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
+
+      document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <link rel="stylesheet" href="/styles/contact.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <h3 class="brand-name">MyArtBox</h3>
+      </div>
+      <!-- Navigation Menu -->
+      <nav>
+        <ul class="nav-links">
+          <li>
+            <a href="index.html">
+              <md-outlined-button>Home</md-outlined-button>
+            </a>
+          </li>
+          <li>
+            <a href="catalog.html">
+              <md-outlined-button>Catalog</md-outlined-button>
+            </a>
+          </li>
+          <li>
+            <a href="about.html">
+              <md-outlined-button>About</md-outlined-button>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html">
+              <md-outlined-button disabled>Contact</md-outlined-button>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="right-aligned-content">
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." />
+        </div>
+        <div class="header-icons">
+          <md-filled-button onclick="window.location.href='cart.html'"
+            >Cart</md-filled-button
+          >
+          <md-filled-tonal-button onclick="window.location.href='profile.html'"
+            >Profile</md-filled-tonal-button
+          >
+        </div>
+      </div>
+    </header>
+
+    <section class="page-title">
+      <h1>Contact Us</h1>
+    </section>
+
+    <section class="content-section">
+      <div class="contact-form">
+        <h3>Get in Touch</h3>
+        <form action="submit-contact-form.html" method="post">
+          <md-outlined-text-field label="Name" type="text" required>
+          </md-outlined-text-field>
+          <md-outlined-text-field
+            label="Email"
+            type="email"
+            required
+          ></md-outlined-text-field>
+
+          <md-filled-text-field
+            type="textarea"
+            label="Message:"
+            required
+          ></md-filled-text-field>
+          <md-filled-button type="submit">Send Message</md-filled-button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/info.myartbox/" target="_blank"
+          ><img src="/assets/icons/instagram.svg" alt="Instagram"
+        /></a>
+        <a href="https://in.pinterest.com/infomyartbox/" target="_blank"
+          ><img src="/assets/icons/pinterest.svg" alt="Pinterest"
+        /></a>
+        <a href="mailto:info.myartbox@gmail.com"
+          ><img src="/assets/icons/mail.svg" alt=""
+        /></a>
+      </div>
+      <span class="copyright">MyArtBox&copy;2024</span>
+    </footer>
+  </body>
+</html>

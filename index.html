@@ -4,26 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LANDING PAGE - Online Shopping</title>
-    <link rel="stylesheet" href="newstyle.css">
     <script src="https://kit.fontawesome.com/15348fb4e8.js" crossorigin="anonymous"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <title>MyArtBox</title>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+      import "@material/web/all.js";
+      import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
 
+      document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+
+    <link rel="stylesheet" href="/styles/styles.css">
 
 </head>
 
 <body>
-    <div class="home-container">
+    <!-- <div class="home-container">
         <main>
             <div class="logo">
-                <img src="img/shopping-cart.svg" alt="Cart Icon">
+                <img src="/assets/images/shopping-cart.svg" alt="Cart Icon">
                 MYart Box
             </div>
             <nav>
@@ -41,7 +56,52 @@
                 <div class="profile-icon">👤</div>
                 <div class="cart-icon">🛒</div>
             </div>
-        </main>
+        </main> -->
+
+        <!-- Header -->
+    <header>
+        <div class="header-top">
+          <h3 class="brand-name">MyArtBox</h3>
+        </div>
+        <!-- Navigation Menu -->
+        <nav>
+          <ul class="nav-links">
+            <li>
+              <a href="index.html">
+                <md-outlined-button disabled>Home</md-outlined-button>
+              </a>
+            </li>
+            <li>
+              <a href="catalog.html">
+                <md-outlined-button>Catalog</md-outlined-button>
+              </a>
+            </li>
+            <li>
+              <a href="about.html">
+                <md-outlined-button>About</md-outlined-button>
+              </a>
+            </li>
+            <li>
+              <a href="contact.html">
+                <md-outlined-button>Contact</md-outlined-button>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="right-aligned-content">
+          <div class="search-bar">
+            <input type="text" placeholder="Search..." />
+          </div>
+          <div class="header-icons">
+            <md-filled-button onclick="window.location.href='cart.html'"
+              >Cart</md-filled-button
+            >
+            <md-filled-tonal-button onclick="window.location.href='profile.html'"
+              >Profile</md-filled-tonal-button
+            >
+          </div>
+        </div>
+      </header>
 
         <div class="content">
             <div class="left-content">
@@ -49,11 +109,11 @@
                 <div class="just-for">JUST<br>FOR <span>you</span></div>
             </div>
             <div class="center-content">
-                <div class="carousel-item"><img src="img/all.avif" alt="Product 1"></div>
-                <div class="carousel-item"><img src="img/all.avif" alt="Product 4"></div>
+                <div class="carousel-item"><img src="/assets/images/all.avif" alt="Product 1"></div>
+                <div class="carousel-item"><img src="/assets/images/all.avif" alt="Product 4"></div>
 
-                <div class="carousel-item"><img src="img/toa-heftiba-ip9R11FMbV8-unsplash.jpg" alt="Product 2"></div>
-                <div class="carousel-item"><img src="img/jelleke-vanooteghem-kkmRtRQMIDk-unsplash.jpg" alt="Product 3">
+                <div class="carousel-item"><img src="/assets/images/toa-heftiba-ip9R11FMbV8-unsplash.jpg" alt="Product 2"></div>
+                <div class="carousel-item"><img src="/assets/images/jelleke-vanooteghem-kkmRtRQMIDk-unsplash.jpg" alt="Product 3">
 
                 </div>
             </div>
@@ -63,16 +123,6 @@
                 <a href="#" class="cta-button">Shop Now</a>
             </div>
         </div>
-
-        <footer>
-            <p>SHOP <span>NOW</span><i class="fa-solid fa-arrow-right-long"></i></p>
-            <div class="social-icons">
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-whatsapp"></i>
-            </div>
-
-        </footer>
     </div>
 
 
@@ -90,9 +140,9 @@
             <div class="circleimg"
                 style="background-image: url('https://m.media-amazon.com/images/I/71-4jc1doRL._SL1500_.jpg');"
                 data-text="Painting"></div>
-            <div class="circleimg" style="background-image: url('img/redcolor.webp');" data-text="Pencil"></div>
-            <div class="circleimg" style="background-image: url('img/craft.jpg');" data-text="Craft"></div>
-            <div class="circleimg" style="background-image: url('img/canva.jpg');" data-text="Canva"></div>
+            <div class="circleimg" style="background-image: url('/assets/images/redcolor.webp');" data-text="Pencil"></div>
+            <div class="circleimg" style="background-image: url('/assets/images/craft.jpg');" data-text="Craft"></div>
+            <div class="circleimg" style="background-image: url('/assets/images/canva.jpg');" data-text="Canva"></div>
         </div>
 
     </div>
@@ -107,19 +157,19 @@
     <div class="thirdcontainer">
         <div class="top-row">
             <div class="thirdsection">
-                <img src="img/mainpic.jpg" alt="Creamy Cheese">
+                <img src="/assets/images/mainpic.jpg" alt="Creamy Cheese">
                 <div class="text-overlay">Traditional Art</div>
-                <a href="painting1.html" class="arrow-icon"><i class="fas fa-arrow-right"></i></a>
+                <a href="painting-1.html" class="arrow-icon"><i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="thirdsection">
-                <img src="img/mainpic2.jpg" alt="Grocery Product">
+                <img src="/assets/images/mainpic2.jpg" alt="Grocery Product">
                 <div class="text-overlay">Floral Paintings</div>
-                <a href="painting.html" class="arrow-icon"><i class="fas fa-arrow-right"></i></a>
+                <a href="painting-2.html" class="arrow-icon"><i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="thirdsection">
-                <img src="img/mainpic3.jpg" alt="Bakery Bread">
+                <img src="/assets/images/mainpic3.jpg" alt="Bakery Bread">
                 <div class="text-overlay">Wall Decoration</div>
-                <a href="painting2.html" class="arrow-icon"><i class="fas fa-arrow-right"></i></a>
+                <a href="painting-3.html" class="arrow-icon"><i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
 
@@ -132,7 +182,7 @@
                 <h2>Big sale</h2>
                 <p>Up to 60% discount on all your favourite products</p>
                 <div class="image">
-                    <img src="img/painting3.jpg" alt="Grains">
+                    <img src="/assets/images/painting3.jpg" alt="Grains">
                     <div class="overlayy">
                         <span>View Products</span>
                     </div>
@@ -149,7 +199,7 @@
                 <h2>Special coupon</h2>
                 <p>Get 30% off your next purchase</p>
                 <div class="image">
-                    <img src="img/mainpic4.jpg" alt="Nuts">
+                    <img src="/assets/images/mainpic4.jpg" alt="Nuts">
                     <div class="overlayy">
                         <span>Redeem Now</span>
                     </div>
@@ -164,7 +214,7 @@
 
     <div class="container">
         <div class="deals-section">
-            <img src="img/painting3.jpg" alt="Deals of the Day" class="deals-image">
+            <img src="/assets/images/painting3.jpg" alt="Deals of the Day" class="deals-image">
 
 
             <h2>DEALS OF THE DAY</h2>
@@ -305,17 +355,7 @@
 
 
 
-    <footer class="lastfooterpath-footer">
-        <div class="lastfooterpath-newsletter">
-            <h2>Newsletter</h2>
-            <p>Enter your email below to be the first to know about new collections and product launches.</p>
-            <form class="lastfooterpath-email-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">
-                    <i class="fas fa-envelope"></i>
-                </button>
-            </form>
-        </div>
+    <!-- <footer class="lastfooterpath-footer">
 
         <div class="lastfooterpath-main-content">
             <div class="lastfooterpath-features">
@@ -342,7 +382,7 @@
                         <i class="fas fa-tag"></i>
                     </div>
                     <div class="lastfooterpath-feature-text">
-                        <h3>Daily oaffer</h3>
+                        <h3>Daily offer</h3>
                         <p>Discount up to 50% off</p>
                     </div>
                 </div>
@@ -380,36 +420,41 @@
                     <h3>Infomation</h3>
                     <ul>
                         <li><a href="#">About us</a></li>
-                        <li><a href="#">About us 2</a></li>
                         <li><a href="#">Contact us</a></li>
-                        <li><a href="#">Contact us 2</a></li>
-                        <li><a href="#">Faq's</a></li>
-                        <li><a href="#">Privacy policy</a></li>
                     </ul>
                 </div>
                 <div class="lastfooterpath-column">
                     <h3>Quick links</h3>
                     <ul>
-                        <li><a href="#">Account policy</a></li>
-                        <li><a href="#">Refund policy</a></li>
                         <li><a href="#">Shipping & return</a></li>
-                        <li><a href="#">Store location</a></li>
-                        <li><a href="#">Term & condition</a></li>
                         <li><a href="#">Help & support</a></li>
                     </ul>
                 </div>
                 <div class="lastfooterpath-column">
-                    <h3>Address</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 80 Colaba East,</p>
-                    <p>Regal Mumbai, rm 400005, Mumbai India</p>
                     <h3>Contact us</h3>
                     <p><i class="fas fa-phone"></i> +(91) 123 456 7890</p>
-                    <p><i class="fas fa-envelope"></i> artboxinfo@gmail.com</p>
+                    <p><i class="fas fa-envelope"></i> info.artbox@gmail.com</p>
                 </div>
             </div>
         </div>
+    </footer> -->
+
+    <footer>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/info.myartbox/" target="_blank"
+            ><img src="/assets/icons/instagram.svg" alt="Instagram"
+          /></a>
+          <a href="https://in.pinterest.com/infomyartbox/" target="_blank"
+            ><img src="/assets/icons/pinterest.svg" alt="Pinterest"
+          /></a>
+          <a href="mailto:info.myartbox@gmail.com"
+            ><img src="/assets/icons/mail.svg" alt=""
+          /></a>
+        </div>
+      <span class="copyright">MyArtBox&copy;2024</span>
     </footer>
-    <script src="newscript.js"></script>
+
+    <script src="/scripts/script.js"></script>
 </body>
 
 </html>
