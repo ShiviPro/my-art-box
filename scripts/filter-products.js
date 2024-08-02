@@ -375,19 +375,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize the price values display
   updatePriceValues();
 
-  let productGrid = document.querySelector(".product-grid");
-  productGrid.innerHTML = "";
+let productGrid = document.querySelector(".product-grid");
+productGrid.innerHTML = "";
 
-  products.forEach((product) => {
-    let productElement = getProductNode(product);
-    productGrid.appendChild(productElement);
-  });
+products.forEach((product) => {
+  let productElement = getProductNode(product);
+  productGrid.appendChild(productElement);
+});
 
-  function getProductNode(product) {
-    let productNode = document.createElement("div");
-    productNode.classList.add("product-item");
+function getProductNode(product) {
+  let productNode = document.createElement("div");
+  productNode.classList.add("product-item");
 
-    productNode.innerHTML = `
+  productNode.innerHTML = `
     <img class="product-image" src="${product.images[0]}" alt="${product.name}" />
     <h3>
       <md-text-button>
@@ -395,6 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </md-text-button>
     </h3>
     <p>₹${product.price}</p>
+    <p>Color: ${product.colors}</p>
     <md-filled-button class="buy-now-btn">
       Buy Now
     </md-filled-button>
@@ -402,124 +403,230 @@ document.addEventListener("DOMContentLoaded", () => {
       Add to Cart
     </md-outlined-button>
   `;
-    return productNode;
-  }
-
-  const allProducts = productGrid.innerHTML;
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const filters = {
-    price: document.getElementById("price-range"),
-    colors: document.querySelectorAll(".color"),
-    materials: document.querySelectorAll(".material"),
-    brands: document.querySelectorAll(".brand"),
-    rating: document.querySelectorAll(".star-rating .stars span"),
-  };
-
-  document.querySelector('.apply-filters-button').addEventListener('click', applyFilters)
-
-  function applyFilters() {
-    const selectedFilters = {
-      currPriceMax: filters.price.value,
-      colors:
-        getCheckedValues(filters.colors).length > 0
-          ? getCheckedValues(filters.colors)
-          : ["Black", "White", "Brown", "Gray", "Silver", "Multicolor"],
-      materials:
-        getCheckedValues(filters.materials.length) > 0
-          ? getCheckedValues(filters.materials)
-          : [
-              "Cotton",
-              "Acrylic",
-              "Graphite",
-              "Water-based",
-              "Oil",
-              "Charcoal",
-              "Wood",
-              "Steel",
-              "Rubber",
-              "Synthetic",
-              "Natural",
-              "Various",
-              "Ceramic",
-              "Ink",
-            ],
-      brands:
-        getCheckedValues(filters.brands) > 0
-          ? getCheckedValues(filters.brands)
-          : [
-              "ArtMaster",
-              "ColorSplash",
-              "SketchPro",
-              "PaperMagic",
-              "EaselKing",
-              "ToolBox",
-              "John Doe",
-              "Jane Smith",
-              "Sarah Lee",
-            ],
-      rating:
-        getSelectedRating(filters.rating).length > 0
-          ? getSelectedRating(filters.rating)
-          : ["1"],
-    
-      };
-      filterProducts(products, selectedFilters)
-  }
-
-
-  function getCheckedValues(checkboxes) {
-    return Array.from(checkboxes)
-      .filter((checkbox) => checkbox.checked)
-      .map((checkbox) => checkbox.value);
-  }
-
-  function getSelectedRating(stars) {
-    return Array.from(stars)
-      .filter((star) => star.classList.contains("selected"))
-      .map((star) => star.dataset.value);
-  }
-
-  filters.rating.forEach((star) => {
-    star.addEventListener("click", () => {
-      filters.rating.forEach((s) => s.classList.remove("selected"));
-      star.classList.add("selected");
-    });
-  });
-
-function filterProducts(products, filters) {
-  let maxPrice = filters.currPriceMax;
-  let chosenColors = filters.colors;
-  let chosenMaterials = filters.materials;
-  let chosenBrands = filters.brands;
-  let minRating = filters.rating;
-
-  let filteredProducts = [];
-  let filteredProductIds = [];
-
-  products.forEach((product) => {
-    if (product.price <= maxPrice && product.rating >= minRating) {
-      chosenColors.forEach((chosenColor) => {
-        if (product.colors.includes(chosenColor, 0)) {
-          chosenMaterials.forEach((chosenMaterial) => {
-            if (product.material.includes(chosenMaterial, 0)) {
-              chosenBrands.forEach((chosenBrand) => {
-                if (product.brand.includes(chosenBrand, 0)) {
-                  if (!filteredProductIds.includes(product.id, 0)) {
-                    filteredProducts.push(product);
-                    filteredProductIds.push(product.id);
-                  }
-                }
-              });
-            }
-          });
-        }
-      });
-    }
-  });
+  return productNode;
 }
+
+const allProducts = productGrid.innerHTML;
+
+
+let blackFilter = document.querySelector(".black")
+
+blackFilter.addEventListener("change", ()=> {
+  if(blackFilter.checked) {
+    productGrid.innerHTML = ""
+    products.forEach(product => {
+      if(product.colors.includes("Black", 0) || product.colors.includes("Multicolor", 0)) {
+        let productNode = getProductNode(product)
+        productGrid.appendChild(productNode)
+      }
+    })
+  } else {
+    productGrid.innerHTML = allProducts
+  }
+})
+
+let whiteFilter = document.querySelector(".white")
+
+whiteFilter.addEventListener("change", ()=> {
+  if(whiteFilter.checked) {
+    productGrid.innerHTML = ""
+    products.forEach(product => {
+      if(product.colors.includes("White", 0) || product.colors.includes("Multicolor", 0)) {
+        let productNode = getProductNode(product)
+        productGrid.appendChild(productNode)
+      }
+    })
+  } else {
+    productGrid.innerHTML = allProducts
+  }
+})
+
+let brownFilter = document.querySelector(".brown")
+
+brownFilter.addEventListener("change", ()=> {
+  if(brownFilter.checked) {
+    productGrid.innerHTML = ""
+    products.forEach(product => {
+      if(product.colors.includes("Brown", 0) || product.colors.includes("Multicolor", 0)) {
+        let productNode = getProductNode(product)
+        productGrid.appendChild(productNode)
+      }
+    })
+  } else {
+    productGrid.innerHTML = allProducts
+  }
+})
+
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+// const filters = {
+//   price: document.getElementById("price-range"),
+//   colors: document.querySelectorAll(".color"),
+//   materials: document.querySelectorAll(".material"),
+//   brands: document.querySelectorAll(".brand"),
+//   rating: document.querySelectorAll(".star-rating .stars span"),
+// };
+
+// const applyFiltersButton = document.querySelector(".apply-filters-button");
+// applyFiltersButton.addEventListener("click", applyFilters);
+
+//   document.querySelector('.apply-filters-button').addEventListener('click', () => {
+//     const filters = getSelectedFilters();
+//     const filteredProducts = filterProducts(products, filters);
+//     updateProductListings(filteredProducts);
+// });
+
+// function getSelectedFilters() {
+//   const priceRange = document.querySelector('input[type="range"]').value;
+
+//     const selectedColors = Array.from(document.querySelectorAll('.filter-color-group input:checked')).map(cb => cb.classList[0]);
+//     const selectedMaterials = Array.from(document.querySelectorAll('.filter-group input.material:checked')).map(cb => cb.classList[0]);
+//     const selectedBrands = Array.from(document.querySelectorAll('.filter-group input.brand:checked')).map(cb => cb.classList[0]);
+
+//     const selectedRating = document.querySelector('.star-rating .selected') ? document.querySelector('.star-rating .selected').dataset.value : null;
+
+//     return {
+//       currPriceMax: priceRange,
+//       colors: selectedColors,
+//       materials: selectedMaterials,
+//       brands: selectedBrands,
+//       rating: selectedRating
+//   };
+// }
+
+// function applyFilters() {
+// const selectedFilters = {
+//   currPriceMax: filters.price.value,
+//   colors:
+//     getCheckedValues(filters.colors).length > 0
+//       ? getCheckedValues(filters.colors)
+//       : ["Black", "White", "Brown", "Gray", "Silver", "Multicolor"],
+//   materials:
+//     getCheckedValues(filters.materials.length) > 0
+//       ? getCheckedValues(filters.materials)
+//       : [
+//           "Cotton",
+//           "Acrylic",
+//           "Graphite",
+//           "Water-based",
+//           "Oil",
+//           "Charcoal",
+//           "Wood",
+//           "Steel",
+//           "Rubber",
+//           "Synthetic",
+//           "Natural",
+//           "Various",
+//           "Ceramic",
+//           "Ink",
+//         ],
+//   brands:
+//     getCheckedValues(filters.brands) > 0
+//       ? getCheckedValues(filters.brands)
+//       : [
+//           "ArtMaster",
+//           "ColorSplash",
+//           "SketchPro",
+//           "PaperMagic",
+//           "EaselKing",
+//           "ToolBox",
+//           "John Doe",
+//           "Jane Smith",
+//           "Sarah Lee",
+//         ],
+//   rating:
+//     getSelectedRating(filters.rating).length > 0
+//       ? getSelectedRating(filters.rating)
+//       : ["1"],
+// };
+// }
+
+// function getCheckedValues(checkboxes) {
+//   return Array.from(checkboxes)
+//     .filter((checkbox) => checkbox.checked)
+//     .map((checkbox) => checkbox.value);
+// }
+
+// function getSelectedRating(stars) {
+//   return Array.from(stars)
+//     .filter((star) => star.classList.contains("selected"))
+//     .map((star) => star.dataset.value);
+// }
+
+// filters.rating.forEach((star) => {
+//   star.addEventListener("click", () => {
+//     filters.rating.forEach((s) => s.classList.remove("selected"));
+//     star.classList.add("selected");
+//   });
+// });
+// });
+
+// function filterProducts(products, filters) {
+// Fetch and filter products based on the selected filters
+// This is where you would typically make an API call to get the filtered products
+
+// let filteredProducts = []
+// let filteredProductIds = []
+
+// products.forEach(product => {
+//   if(product.price <= maxPrice && product.rating >= minRating) {
+//     chosenColors.forEach(chosenColor => {
+//       if(product.colors.includes(chosenColor, 0)) {
+//         chosenMaterials.forEach(chosenMaterial => {
+//           if(product.material.includes(chosenMaterial, 0)) {
+//             chosenBrands.forEach(chosenBrand => {
+//               if(product.brand.includes(chosenBrand, 0)) {
+//                 if(!filteredProductIds.includes(product.id, 0)) {
+//                   filteredProducts.push(product)
+//                   filteredProductIds.push(product.id)
+//                 }
+//               }
+//             })
+//           }
+//         })
+//       }
+//     })
+//   }
+// })
+
+//   let maxPrice = filters.currPriceMax;
+//   let chosenColors = filters.colors;
+//   let chosenMaterials = filters.materials;
+//   let chosenBrands = filters.brands;
+//   let minRating = filters.rating;
+
+//   return products.filter((product) => {
+//     // Price range filter
+//     if (product.price > maxPrice) return false;
+
+//     // Color filter
+//     if (
+//       chosenColors.length &&
+//       !chosenColors.some((color) => product.colors.includes(color))
+//     )
+//       return false;
+
+//     // Material filter
+//     if (
+//       chosenMaterials.length &&
+//       !chosenMaterials.includes(product.material.toLowerCase())
+//     )
+//       return false;
+
+//     // Brand filter
+//     if (
+//       chosenBrands.length &&
+//       !chosenBrands.includes(product.brand.toLowerCase())
+//     )
+//       return false;
+
+//     // Rating filter
+//     if (minRating && product.rating < minRating) return false;
+
+//     return true;
+//   });
+// }
 
 function updateProductListings(filteredProducts) {
   console.log("Updating Product list with Filters");
@@ -530,3 +637,94 @@ function updateProductListings(filteredProducts) {
     productGrid.appendChild(productElement);
   });
 }
+
+// function getSelectedFilters() {
+//   const priceRange = document.querySelector('input[type="range"]').value;
+
+//   const selectedColors = Array.from(
+//     document.querySelectorAll(".filter-color-group input:checked")
+//   ).map((cb) => cb.classList[0]);
+//   const selectedMaterials = Array.from(
+//     document.querySelectorAll(".filter-group input.material:checked")
+//   ).map((cb) => cb.classList[0]);
+//   const selectedBrands = Array.from(
+//     document.querySelectorAll(".filter-group input.brand:checked")
+//   ).map((cb) => cb.classList[0]);
+
+//   const selectedRating = document.querySelector(".star-rating .stars .selected")
+//     ? document.querySelector(".star-rating .stars .selected").dataset.value
+//     : null;
+
+//   return {
+//     priceRange: priceRange,
+//     colors: selectedColors,
+//     materials: selectedMaterials,
+//     brands: selectedBrands,
+//     rating: selectedRating,
+//   };
+// }
+
+// function filterProducts(products, filters) {
+//   return products.filter((product) => {
+//     // Price range filter
+//     if (product.price > filters.priceRange) return false;
+
+//     // Rating filter
+//     console.log("Filter Rating:", filters.rating)
+//     console.log("Product Rating:", product.rating)
+//     if (filters.rating && product.rating < filters.rating) return false;
+
+//     // Color filter
+//     if (
+//       filters.colors.length &&
+//       !filters.colors.some((color) => product.colors.includes(color))
+//     )
+//       return false;
+
+//     // Material filter
+//     if (
+//       filters.materials.length &&
+//       !filters.materials.includes(product.material.toLowerCase())
+//     )
+//       return false;
+
+//     // Brand filter
+//     if (
+//       filters.brands.length &&
+//       !filters.brands.includes(product.brand.toLowerCase())
+//     )
+//       return false;
+
+//     return true;
+//   });
+// }
+
+// function displayProducts(products) {
+//   const productGrid = document.querySelector('.product-grid');
+//   productGrid.innerHTML = ''; // Clear existing products
+
+//   products.forEach(product => {
+//       const productElement = document.createElement('div');
+//       productElement.className = 'product';
+
+//       productElement.innerHTML = `
+//           <img src="${product.image}" alt="${product.name}">
+//           <h3>${product.name}</h3>
+//           <p>Price: ₹${product.price}</p>
+//           <button>Add to Cart</button>
+//       `;
+
+//       productGrid.appendChild(productElement);
+//   });
+// }
+
+// Event listener for applying filters
+// document
+//   .querySelector(".apply-filters-button")
+//   .addEventListener("click", () => {
+//     const filters = getSelectedFilters();
+//     const filteredProducts = filterProducts(products, filters);
+//     // displayProducts(filteredProducts);
+//     console.log("Filtered Products:", filteredProducts);
+//     updateProductListings(filteredProducts);
+//   });
